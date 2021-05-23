@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions, mixins, status
 from rest_framework.response import Response
-from .serializers import IplMatchSerializer
+from .serializers import IplMatchSerializer #, IplTeamMatchSerializerNested
 from .models import IplMatch
 from django.shortcuts import render
 from django.db.models import Q
@@ -49,3 +49,12 @@ class MatchListViewAsPerTeam(generics.ListAPIView):
     def get_queryset(self, *args, **kwargs):
         teamName = teamDict[self.kwargs['team'].upper()]
         return IplMatch.objects.filter(Q(team1=teamName) | Q(team2=teamName))
+
+# class MatchListViewAsPerTeamNested(generics.ListAPIView):
+#     serializer_class = IplTeamMatchSerializerNested
+#     model = IplMatch
+#     queryset = model.objects.all()
+
+#     def get_queryset(self, *args, **kwargs):
+#         teamName = teamDict[self.kwargs['team'].upper()]
+#         return IplMatch.objects.filter(Q(team1=teamName) | Q(team2=teamName))

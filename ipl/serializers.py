@@ -33,3 +33,10 @@ class IplMatchSerializer(serializers.ModelSerializer):
     def get_matchResult(self, obj):
         msg = obj.matchWinner + " Won By " + obj.resultMargin + obj.result
         return msg
+# class IplTeamMatchSerializer(serializers.ModelSerializer):
+#     match = IplMatchSerializer()
+#     class Meta:
+#         model = IplMatch
+#         fields = [
+#             'id', 'team1'match'
+#         ]
